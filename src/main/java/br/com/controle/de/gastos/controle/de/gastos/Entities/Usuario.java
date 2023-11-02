@@ -1,7 +1,6 @@
 package br.com.controle.de.gastos.controle.de.gastos.Entities;
 
 import java.io.Serializable;
-import org.hibernate.validator.constraints.UniqueElements;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,18 +26,18 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id_usuario")
+	@Column(name = "id_usuario",unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@PrimaryKeyJoinColumn
 	private long id;
 	
 	@NotNull
-	@Column(name = "nome")
+	@Column(name = "nome",unique = true)
 	private String nome;
 	
 	@NotNull
 	//Vai ser email. 
-	@Column(name = "login")
+	@Column(name = "login",unique = true)
 	private String login;
 	
 	@NotNull

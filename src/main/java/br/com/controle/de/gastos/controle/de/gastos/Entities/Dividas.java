@@ -1,6 +1,8 @@
 package br.com.controle.de.gastos.controle.de.gastos.Entities;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,9 +29,9 @@ public class Dividas implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idDivida")
-	private long idDivida;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID",nullable = false,unique = true)
+	private long id;
 
 	@NotNull
 	@Column(name = "descript")
@@ -43,8 +45,10 @@ public class Dividas implements Serializable {
 	@Column(name = "qtdParc")
 	private Integer quantidadeParcelas;
 
+	@JsonIgnore
+	@Getter@Setter
 	@ManyToOne
-	@JoinColumn(name = "fk_usuario", nullable = false)
+	@JoinColumn(name = "cod_usuario",referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;
 
 }
