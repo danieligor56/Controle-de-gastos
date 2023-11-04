@@ -1,11 +1,8 @@
 package br.com.controle.de.gastos.controle.de.gastos.DTO;
 
 import br.com.controle.de.gastos.controle.de.gastos.Entities.Usuario;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

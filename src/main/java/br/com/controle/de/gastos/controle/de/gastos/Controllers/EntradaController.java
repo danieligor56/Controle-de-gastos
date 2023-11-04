@@ -36,15 +36,15 @@ public class EntradaController {
 		return ResponseEntity.ok().body(novaEntrada);
 			
 	}
-	@Operation(summary = "Lista entradas",description = "Insere o código de um usuário e fornecer todas as entradas que o usuário possui")
+	
 	@Transactional
 	@DeleteMapping("/del=/entradas/{id}")
 	public ResponseEntity<Entradas> deleteEntPorId(@PathVariable long id){
 		return ResponseEntity.ok(entradaService.deleteEntrada(id));
 		
 	}
-	
-	@GetMapping("/listAll/entradas")
+	@Operation(summary = "Lista entradas",description = "Insere o código de um usuário e fornecer todas as entradas que o usuário possui")
+	@GetMapping("/listall")
 	public ResponseEntity <List<Entradas>>listaPorUsuario(@RequestParam long id){
 	return ResponseEntity.ok().body(entradaService.encontraPorUsuario(id));	
 	}

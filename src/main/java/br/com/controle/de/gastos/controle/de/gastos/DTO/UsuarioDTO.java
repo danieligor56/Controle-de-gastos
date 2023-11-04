@@ -1,16 +1,6 @@
 package br.com.controle.de.gastos.controle.de.gastos.DTO;
 
-import jakarta.persistence.Column;
+import br.com.controle.de.gastos.controle.de.gastos.Entities.UsuarioRole;
 
-public class UsuarioDTO {
-
-	@Column(name = "nome")
-	private String nome;
-	
-	//Vai ser email. 
-	@Column(name = "login")
-	private String login;
-	
-	@Column(name = "plvPass")
-	private String plvPassString;
+public record UsuarioDTO (String nome,String login,String plvPass,UsuarioRole role){
 }
