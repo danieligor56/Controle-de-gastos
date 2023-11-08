@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.controle.de.gastos.controle.de.gastos.DTO.AuthDTO;
+import br.com.controle.de.gastos.controle.de.gastos.DTO.LoginResponseDTO;
 import br.com.controle.de.gastos.controle.de.gastos.DTO.UsuarioDTO;
 import br.com.controle.de.gastos.controle.de.gastos.Entities.Usuario;
-import br.com.controle.de.gastos.controle.de.gastos.Repository.UsuarioRepository;
+import br.com.controle.de.gastos.controle.de.gastos.Services.TokenService;
 import br.com.controle.de.gastos.controle.de.gastos.Services.UsuarioService;
-import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.validation.Valid;
 import lombok.var;
 
 @RestController
-@RequestMapping("auth")
-
+@RequestMapping("api/v1/auth")
 public class LoginUsuario {
 	
 	@Autowired
@@ -28,13 +28,18 @@ public class LoginUsuario {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@PostMapping("/login")
-	public ResponseEntity login (@RequestBody @Valid AuthDTO authDTO){
+	@Autowired
+	TokenService tokenService;
+		
+		@PostMapping("/login")
+		public ResponseEntity login (@RequestBody @Valid AuthDTO authDTO){
 		
 		var usernamePassword = new UsernamePasswordAuthenticationToken(authDTO.login(),authDTO.plvPass());
 		var auth =this.authenticationManager.authenticate(usernamePassword);
 		
-		return ResponseEntity.ok().build();
+		var token = tokenService.geradorToken((Usuario)auth.getPrincipal());
+		
+		return ResponseEntity.ok(new LoginResponseDTO(token));
 	}
 	
 	@PostMapping("/register")
