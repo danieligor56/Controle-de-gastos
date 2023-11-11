@@ -9,6 +9,8 @@ import br.com.controle.de.gastos.controle.de.gastos.Entities.Usuario;
 public interface UsuarioRepository extends JpaRepository <Usuario,Long> {
 	
 	UserDetails findByLogin(String login);
+
+	Usuario findByNome(String nome);
 	
 
 }

@@ -3,7 +3,6 @@ package br.com.controle.de.gastos.controle.de.gastos.Entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-
 import org.springframework.security.config.annotation.web.headers.HttpPublicKeyPinningDsl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -42,16 +41,16 @@ public class Usuario implements UserDetails{
 	private long id;
 	
 	@NotNull
-	@Column(name = "nome",unique = true)
+	@Column(name = "nome",unique = true,nullable = false)
 	private String nome;
 	
 	@NotNull
 	//Vai ser email. 
-	@Column(name = "login",unique = true)
+	@Column(name = "login",unique = true,nullable = false)
 	private String login;
 	
 	@NotNull
-	@Column(name = "plvPass")
+	@Column(name = "plvPass",nullable = false)
 	private String plvPass;
 	
 	@Getter @Setter
@@ -111,11 +110,5 @@ public class Usuario implements UserDetails{
 		this.plvPass = plvPass;
 		this.role = role;
 	}
-	
-	
-
-	
-	
-	
-
+		
 }
