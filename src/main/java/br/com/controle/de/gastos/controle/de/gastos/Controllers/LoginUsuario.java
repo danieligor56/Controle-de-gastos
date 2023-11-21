@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.controle.de.gastos.controle.de.gastos.DTO.AuthDTO;
+import br.com.controle.de.gastos.controle.de.gastos.DTO.LoginResponseDTO;
 import br.com.controle.de.gastos.controle.de.gastos.DTO.UsuarioDTO;
 import br.com.controle.de.gastos.controle.de.gastos.Entities.Usuario;
 import br.com.controle.de.gastos.controle.de.gastos.Services.UsuarioService;
@@ -15,6 +17,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/auth")
+
 public class LoginUsuario {
 
 	@Autowired
@@ -27,7 +30,7 @@ public class LoginUsuario {
 	@PostMapping("/login")
 	public ResponseEntity login(@RequestBody @Valid AuthDTO authDTO) {
 		usuarioService.login(authDTO);
-		return ResponseEntity.ok("Usuário logado com sucesso");
+		return ResponseEntity.ok().body(usuarioService.returnUser(authDTO.login()));
 	}
 
 	@PostMapping("/register")

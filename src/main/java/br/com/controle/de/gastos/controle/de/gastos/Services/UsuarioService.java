@@ -6,12 +6,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import br.com.controle.de.gastos.controle.de.gastos.DTO.UsuarioIdDTO;
 import br.com.controle.de.gastos.controle.de.gastos.DTO.AuthDTO;
 import br.com.controle.de.gastos.controle.de.gastos.DTO.UsuarioDTO;
 import br.com.controle.de.gastos.controle.de.gastos.Entities.Usuario;
 import br.com.controle.de.gastos.controle.de.gastos.Entities.UsuarioRole;
 import br.com.controle.de.gastos.controle.de.gastos.Exeptions.BadRequestExeption;
 import br.com.controle.de.gastos.controle.de.gastos.Repository.UsuarioRepository;
+import io.swagger.v3.core.util.Json;
 import jakarta.validation.Valid;
 import lombok.var;
 
@@ -66,6 +68,12 @@ public Usuario login(@Valid AuthDTO authDTO) {
 }
 
 
+ public UsuarioIdDTO returnUser(String login) { 
+	 Usuario usuarioID = usuarioRepository.findUsuarioByLogin(login);
+	 var iduser = modelMapper.map(usuarioID, UsuarioIdDTO.class);
+	 return iduser;
+ 
+ }
 
 
 
