@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Lobster&family=Roboto&display=swap');
+
+
+.container{
+    height: 100%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(138,43,255,1) 35%, rgba(0,212,255,1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+form{
+    width: 30rem;
+    margin:auto;
+    background-color:white;
+    padding: 4rem 1rem ;
+    border-radius: 1rem;
+}
+
+img{
+    width: 100%;   
+}
+
+
+
+.full-width{
+    width: 100%;
+    
+}
+
+
+
+h1{
+    text-align: center;
+    font-family: 'Lobster', sans-serif;
+    
+}
+
+button{
+    width: 100%;
+    margin-top: .5rem;
+}
