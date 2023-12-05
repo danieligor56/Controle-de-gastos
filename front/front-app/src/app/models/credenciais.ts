@@ -1,4 +1,4 @@
 export interface Credenciais{
-    email:string;
-    senha:string;
+    login:string;
+    plvPass:string;
 }

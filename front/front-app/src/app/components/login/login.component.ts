@@ -1,38 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Credenciais } from 'src/app/models/credenciais';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  creds:Credenciais={
-    email:'',
-    senha:''
+  creds: Credenciais = {
+    login: '',
+    plvPass: ''
   }
 
-  email = new FormControl(null,Validators.email)
-  senha = new FormControl(null,Validators.minLength(4))
+  email = new FormControl(null, Validators.email)
+  senha = new FormControl(null, Validators.minLength(4))
 
-  constructor(private toast: ToastrService) { }
+  constructor(
+    private toast: ToastrService,
+    private service: AuthService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  logar(){
-    this.toast.error('usuario invalido','erro');
-    }
-  
-  validaCampos(){
-    if(this.email.valid && this.senha.valid){
-      return true;
-    }else{
-      return false;
-    }
+  logar() {
+    this.service.authenticate(this.creds).subscribe(
+      (resu: any) => {
+        
+        
+        this.toast.success("Login Sucess")
+        this.router.navigate([``])
+        
+      },
+      (error: any) => {
+
+        console.error(error)
+      },
+      () => {
+
+      }
+    )
+  }
+
+  validaCampos(): boolean {
+    return this.email.valid && this.senha.valid
   }
 }
+
 
 

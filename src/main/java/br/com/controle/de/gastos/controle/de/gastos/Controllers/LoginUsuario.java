@@ -30,7 +30,7 @@ public class LoginUsuario {
 	@PostMapping("/login")
 	public ResponseEntity login(@RequestBody @Valid AuthDTO authDTO) {
 		usuarioService.login(authDTO);
-		return ResponseEntity.ok().body(usuarioService.returnUser(authDTO.login()));
+		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping("/register")
